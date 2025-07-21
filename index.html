@@ -1,0 +1,231 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cattle Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="c">
+        <div class="h">
+            <h1>🐄 Cattle Management System</h1>
+            <p>Simple Data Input & Visual Reports with Auto-Save</p>
+            <div class="s">
+                <div class="d"></div>
+                <span id="st">Auto-save enabled</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>💾 Data Management</h2>
+            <div class="bs">
+                <div class="bi">
+                    <span>Last saved: <span id="ls">Never</span></span>
+                    <span>Records: <span id="rc">0</span></span>
+                </div>
+                <button class="btn b2" onclick="backup()">📦 Create Backup</button>
+            </div>
+            <div>
+                <label>Restore from Backup:</label>
+                <input type="file" accept=".json" onchange="restore(this)">
+            </div>
+            <button class="btn b4" onclick="clear()">🗑️ Clear All Data</button>
+        </div>
+        
+        <div class="card">
+            <h2>⚙️ Settings</h2>
+            <div class="r">
+                <div>
+                    <label>Milk Price per Liter (₹):</label>
+                    <input type="number" id="price" step="0.01" placeholder="Enter milk price">
+                </div>
+                <div>
+                    <label>Weekly Feed Cost (₹):</label>
+                    <input type="number" id="cost" step="0.01" placeholder="Enter feed cost">
+                </div>
+            </div>
+            <button class="btn" onclick="saveSettings()">Save Settings</button>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Daily Milk Production</h2>
+            <div class="r">
+                <div>
+                    <label>Date:</label>
+                    <input type="date" id="date">
+                </div>
+                <div>
+                    <label>Morning Milk (L):</label>
+                    <input type="number" id="morning" step="0.1" placeholder="Morning">
+                </div>
+                <div>
+                    <label>Evening Milk (L):</label>
+                    <input type="number" id="evening" step="0.1" placeholder="Evening">
+                </div>
+            </div>
+            <button class="btn" onclick="addRecord()">Add Record</button>
+            <button class="btn" onclick="generateReport()">Generate Report</button>
+            <button class="btn b2" onclick="multiReport()">Multi-Period Report</button>
+        </div>
+        
+        <div id="report" class="card" style="display:none">
+            <h2>📈 Visual Report</h2>
+            <div class="m">
+                <div class="mc">
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cattle Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="c">
+        <div class="h">
+            <h1>🐄 Cattle Management System</h1>
+            <p>Simple Data Input & Visual Reports with Auto-Save</p>
+            <div class="s">
+                <div class="d"></div>
+                <span id="st">Auto-save enabled</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>💾 Data Management</h2>
+            <div class="bs">
+                <div class="bi">
+                    <span>Last saved: <span id="ls">Never</span></span>
+                    <span>Records: <span id="rc">0</span></span>
+                </div>
+                <button class="btn b2" onclick="backup()">📦 Create Backup</button>
+            </div>
+            <div>
+                <label>Restore from Backup:</label>
+                <input type="file" accept=".json" onchange="restore(this)">
+            </div>
+            <button class="btn b4" onclick="clear()">🗑️ Clear All Data</button>
+        </div>
+        
+        <div class="card">
+            <h2>⚙️ Settings</h2>
+            <div class="r">
+                <div>
+                    <label>Milk Price per Liter (₹):</label>
+                    <input type="number" id="price" step="0.01" placeholder="Enter milk price">
+                </div>
+                <div>
+                    <label>Weekly Feed Cost (₹):</label>
+                    <input type="number" id="cost" step="0.01" placeholder="Enter feed cost">
+                </div>
+            </div>
+            <button class="btn" onclick="saveSettings()">Save Settings</button>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Daily Milk Production</h2>
+            <div class="r">
+                <div>
+                    <label>Date:</label>
+                    <input type="date" id="date">
+                </div>
+                <div>
+                    <label>Morning Milk (L):</label>
+                    <input type="number" id="morning" step="0.1" placeholder="Morning">
+                </div>
+                <div>
+                    <label>Evening Milk (L):</label>
+                    <input type="number" id="evening" step="0.1" placeholder="Evening">
+                </div>
+            </div>
+            <button class="btn" onclick="addRecord()">Add Record</button>
+            <button class="btn" onclick="generateReport()">Generate Report</button>
+            <button class="btn b2" onclick="multiReport()">Multi-Period Report</button>
+        </div>
+        
+        <div id="report" class="card" style="display:none">
+            <h2>📈 Visual Report</h2>
+            <div class="m">
+                <div class="mc">
+                    <div class="mv" id="totalMilk">0</div>
+                    <div class="ml">Total Milk (L)</div>
+                </div>
+                <div class="mc">
+                    <div class="mv" id="totalRevenue">₹0</div>
+                    <div class="ml">Total Revenue</div>
+                </div>
+                <div class="mc">
+                    <div class="mv" id="totalCost">₹0</div>
+                    <div class="ml">Total Cost</div>
+                </div>
+                <div class="mc">
+                    <div class="mv" id="netProfit">₹0</div>
+                    <div class="ml">Net Profit/Loss</div>
+                </div>
+            </div>
+            <div class="cc">
+                <h3>Daily Production Chart</h3>
+                <div class="bc" id="chart"></div>
+            </div>
+            <div class="cc">
+                <h3>Production Data</h3>
+                <table class="t">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Morning (L)</th>
+                            <th>Evening (L)</th>
+                            <th>Total (L)</th>
+                            <th>Revenue (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+            <button class="btn b3" onclick="download()">📥 Download Report</button>
+        </div>
+        
+        <div id="multi" class="card" style="display:none">
+            <h2>📊 Multi-Period Report</h2>
+            <div class="r">
+                <div>
+                    <label>Period:</label>
+                    <select id="period" onchange="updateMulti()">
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                    </select>
+                </div>
+            </div>
+            <div class="m" id="multiMetrics"></div>
+            <div class="cc">
+                <h3>Period Comparison</h3>
+                <div class="bc" id="multiChart"></div>
+            </div>
+            <div class="cc">
+                <h3>Period Data</h3>
+                <table class="t">
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Milk (L)</th>
+                            <th>Revenue (₹)</th>
+                            <th>Cost (₹)</th>
+                            <th>Profit (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="multiBody"></tbody>
+                </table>
+            </div>
+            <button class="btn b3" onclick="downloadMulti()">📥 Download Multi-Period</button>
+        </div>
+        
+        <div id="alerts"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
